@@ -80,7 +80,7 @@
 //	@"Any" (Default) - Book is available in both orientation
 //	@"Portrait" - Book is available only in portrait orientation
 //	@"Landscape" - Book is available only in landscape orientation
-#define	AVAILABLE_ORIENTATION @"Any"
+#define	AVAILABLE_ORIENTATION @"Landscape"
 
 //  ==========================================================================================
 
@@ -218,7 +218,7 @@
 	if (!sharedApplication.statusBarHidden) {
 		scrollViewY = -20;
 	}
-	scrollView.frame = CGRectMake(0, scrollViewY, pageWidth, pageHeight);
+	scrollView.frame = CGRectMake(162, 134, 700, 550); //pageWidth, pageHeight);
 	
 	[self initPageNumbersForPages:totalPages];
 
