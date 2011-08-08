@@ -124,7 +124,9 @@
 	[self hideStatusBar];
 	
 	// ****** SCROLLVIEW INIT
-	scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, pageWidth, pageHeight)];
+	scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 650, 550)];
+//	scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, pageWidth, pageHeight)];
+    
 	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	scrollView.backgroundColor = [UIColor SCROLLVIEW_BGCOLOR];
 	scrollView.showsHorizontalScrollIndicator = YES;
@@ -211,7 +213,8 @@
 		}
 	}
 
-	scrollView.contentSize = CGSizeMake(pageWidth * totalPages, pageHeight);
+	scrollView.contentSize = CGSizeMake(700 * totalPages, 550);    
+	//scrollView.contentSize = CGSizeMake(pageWidth * totalPages, pageHeight);
 	
 	UIApplication *sharedApplication = [UIApplication sharedApplication];
 	int scrollViewY = 0;
@@ -307,8 +310,13 @@
 		spinner.backgroundColor = [UIColor clearColor];
 		
 		CGRect frame = spinner.frame;
-		frame.origin.x = pageWidth * i + (pageWidth + frame.size.width) / 2 - 40;
-		frame.origin.y = (pageHeight + frame.size.height) / 2;
+
+        frame.origin.x = 700 * i + (700 + frame.size.width) / 2 - 40;
+		frame.origin.y = (550 + frame.size.height) / 2;        
+        
+        
+//		frame.origin.x = pageWidth * i + (pageWidth + frame.size.width) / 2 - 40;
+//		frame.origin.y = (pageHeight + frame.size.height) / 2;
 		spinner.frame = frame;
 		
 		[pageSpinners addObject:spinner];
@@ -316,7 +324,10 @@
 		[spinner release];
 		
 		// ****** Numbers
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(pageWidth * i + (pageWidth) / 2, pageHeight / 2 - 6, 100, 50)];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(700 * i + (700) / 2, 550 / 2 - 6, 100, 50)];
+        
+//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(pageWidth * i + (pageWidth) / 2, pageHeight / 2 - 6, 100, 50)];
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = [UIColor PAGE_NUMBERS_COLOR];
 		label.alpha = PAGE_NUMBERS_ALPHA;
@@ -477,7 +488,8 @@
 
 // ****** SCROLLVIEW
 - (CGRect)frameForPage:(int)page {
-	return CGRectMake(pageWidth * (page - 1), 0, pageWidth, pageHeight);
+    return CGRectMake(700 * (page - 1), 0, 700, 550);
+	//return CGRectMake(pageWidth * (page - 1), 0, pageWidth, pageHeight);
 }
 - (void)spinnerForPage:(int)page isAnimating:(BOOL)isAnimating {
 	UIActivityIndicatorView *spinner = nil;
@@ -510,6 +522,7 @@
 	// Nothing to do here either...
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scroll {
+//    int gotoPage = (int)(self.scrollView.contentOffset.x / pageWidth) + 1;
 	int gotoPage = (int)(self.scrollView.contentOffset.x / pageWidth) + 1;
 	
 	//NSLog(@"DEDe contentOffset: %@", NSStringFromCGPoint(self.scrollView.contentOffset));
